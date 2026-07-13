@@ -50,9 +50,13 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
+    if (!process.env.JWT_SECRET) {
+      return res.status(500).json({ message: "Server configuration error" });
+    }
+
     const token = jwt.sign(
       { userId: user._id },
-      process.env.JWT_SECRET || "development_secret",
+      process.env.JWT_SECRET,
       { expiresIn: "7d" }
     );
 

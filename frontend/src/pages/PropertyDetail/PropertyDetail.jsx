@@ -25,7 +25,7 @@ function RazorpayButton({ property }) {
 
   const handlePay = () => {
     const options = {
-      key: 'rzp_test_XXXXXXXXXX',
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
       amount: (isRent ? property.price : 50000) * 100,
       currency: 'INR',
       name: 'LyfeStays',
