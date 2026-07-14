@@ -15,7 +15,7 @@ export default function Owner() {
     name: '', email: '', phone: '', city: '', propertyType: '', nights: 20, pricePerNight: 5000
   });
 
-  const projectedMonthly = form.nights * form.pricePerNight * 0.88; // 12% platform fee
+  const projectedMonthly = form.nights * form.pricePerNight * 0.65; // 35% revenue share = 65% to owner
   const projectedAnnual = projectedMonthly * 12;
 
   const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -32,7 +32,7 @@ export default function Owner() {
             <span className="gradient-text">Steady Income</span>
           </h1>
           <p className="owner__hero-sub">
-            Join 10+ hosts earning ₹1,00,000–₹5,00,000/month with LyfeStays. List for free, earn more.
+            Join 10+ hosts earning ₹1,50,000–₹5,00,000/month with LyfeStays. List for free, earn more.
           </p>
           <div className="owner__hero-ctas">
             <button className="btn-primary" onClick={() => document.getElementById('list-form').scrollIntoView({ behavior: 'smooth' })}>
@@ -47,10 +47,10 @@ export default function Owner() {
         {/* Stats Strip */}
         <div className="owner__stats-strip">
           {[
-            { icon: '💰', value: '₹1.2L', label: 'Avg. monthly earnings' },
+            { icon: '💰', value: '₹1.5L', label: 'Avg. monthly earnings' },
             { icon: '⚡', value: '24hr', label: 'Go live timeline' },
-            { icon: '🤝', value: '12%', label: 'Platform fee only' },
-            { icon: '📈', value: '92%', label: 'Occupancy rate' },
+            { icon: '🤝', value: '35%', label: 'Revenue share' },
+            { icon: '📈', value: '65%', label: 'Occupancy rate' },
           ].map((s) => (
             <div key={s.label} className="owner__stat">
               <span className="owner__stat-icon">{s.icon}</span>
@@ -106,9 +106,9 @@ export default function Owner() {
                 <span className="owner__calc-big">₹{projectedAnnual.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</span>
               </div>
             </div>
-            <p className="owner__calc-note">*After 12% platform fee. Estimates based on similar properties in your area.</p>
+            <p className="owner__calc-note">*After 35% revenue share. Estimates based on similar properties in your area.</p>
             <div className="owner__perks">
-              {['Free listing forever', 'Instant payouts T+1', '₹0 setup cost', 'Dedicated host manager', 'Property insurance cover', 'Smart pricing AI'].map((p) => (
+              {['Free listing forever', 'Instant payouts T+1', '₹0 setup cost', 'Dedicated host manager', 'Property insurance cover', '65% revenue share'].map((p) => (
                 <div key={p} className="owner__perk">
                   <FiCheck className="owner__perk-check" /> {p}
                 </div>
