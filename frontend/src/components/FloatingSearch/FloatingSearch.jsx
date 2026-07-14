@@ -116,7 +116,7 @@ export default function FloatingSearch() {
               <input
                 type="text"
                 className="floating-search__input"
-                placeholder="Search destination, stay, or trip"
+                placeholder="Kasauli"
                 value={destination}
                 onChange={(event) => setDestination(event.target.value)}
               />

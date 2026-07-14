@@ -7,7 +7,7 @@
   justify-content: center;
   overflow: visible;
   z-index: 10;
-  padding-top: 80px;
+  padding-top: 100px;
   padding-bottom: 100px; /* increased to accommodate scroll indicator */
   background: linear-gradient(145deg, #FFFDF5 0%, #FDF6E3 35%, #F7EDD0 65%, #F0E0B0 100%);
 }
@@ -205,6 +205,7 @@
   gap: 2px;
   min-width: 0;
   flex: 1;
+  align-items: center;
 }
 
 .hero__field-label {
@@ -214,6 +215,7 @@
   letter-spacing: 0.1em;
   color: #555;
   line-height: 1;
+  text-align: center;
 }
 
 .hero__field-sublabel {
@@ -233,9 +235,13 @@
   font-family: inherit;
   width: 100%;
   padding: 0;
+  text-align: center;
 }
 
-.hero__input::placeholder { color: #aaa; }
+.hero__input::placeholder { 
+  color: #aaa;
+  text-align: center;
+}
 
 .hero__date-display {
   font-size: 0.84rem;
@@ -520,6 +526,15 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding-top: 80px;
+    padding-bottom: 60px;
+  }
+
+  .hero__search-box {
+    display: none; /* Hide search box on mobile */
+  }
+
   .hero__form {
     flex-direction: column;
     border-radius: 16px;
@@ -536,7 +551,7 @@
   .hero__field--wide { flex: 1; }
   .hero__divider-v { display: none; }
   .hero__search-btn { width: 100%; justify-content: center; border-radius: 12px; }
-  .hero__stats { gap: 24px; }
+  .hero__stats { gap: 24px; margin-bottom: 40px; }
   .hero__stat-value { font-size: 1.5rem; }
 
   .hero__calendar-popup {
@@ -565,4 +580,51 @@
   .hero__title { font-size: 2.2rem; }
   .hero__subtitle { font-size: 0.9rem; }
   .hero__search-box { padding: 16px; border-radius: 16px; }
+}
+
+
+/* Large Desktop - 1920px+ */
+@media (min-width: 1920px) {
+  .hero {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+  
+  .hero__content {
+    max-width: 1300px;
+  }
+  
+  .hero__title {
+    font-size: 5.5rem;
+    margin-bottom: 24px;
+  }
+  
+  .hero__subtitle {
+    font-size: 1.2rem;
+    max-width: 680px;
+    margin-bottom: 48px;
+  }
+  
+  .hero__search-box {
+    max-width: 1200px;
+    padding: 24px 28px 24px;
+  }
+  
+  .hero__stats {
+    gap: 64px;
+    margin-bottom: 100px;
+  }
+  
+  .hero__stat-value {
+    font-size: 2.2rem;
+  }
+  
+  .hero__stat-label {
+    font-size: 0.8rem;
+  }
+  
+  .hero__search-btn {
+    padding: 16px 32px;
+    font-size: 1rem;
+  }
 }

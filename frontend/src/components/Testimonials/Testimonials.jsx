@@ -28,7 +28,9 @@ export default function Testimonials() {
           <div className="testi__quote-mark">"</div>
           <p className="testi__quote">{testimonials[active].text}</p>
           <div className="testi__author">
-            <img src={testimonials[active].avatar} alt={testimonials[active].name} className="testi__avatar" />
+            <div className="testi__avatar">
+              {testimonials[active].name.split(' ').map(n => n[0]).join('')}
+            </div>
             <div>
               <p className="testi__name">{testimonials[active].name}</p>
               <p className="testi__location">📍 {testimonials[active].location} · {testimonials[active].property}</p>
@@ -69,7 +71,9 @@ export default function Testimonials() {
               </div>
               <p className="testi__card-text">"{t.text.substring(0, 100)}..."</p>
               <div className="testi__card-author">
-                <img src={t.avatar} alt={t.name} />
+                <div className="testi__card-avatar">
+                  {t.name.split(' ').map(n => n[0]).join('')}
+                </div>
                 <div>
                   <p className="testi__card-name">{t.name}</p>
                   <p className="testi__card-loc">{t.location}</p>

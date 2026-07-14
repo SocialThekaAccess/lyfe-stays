@@ -37,7 +37,7 @@ export default function Navbar({ session, onLogout }) {
   const navLinks = [
     { to: '/', label: 'Home', icon: <FiHome /> },
     { to: '/rent', label: 'Rent', icon: <FiGlobe /> },
-    { to: '/buy', label: 'Buy', icon: <FiHeart /> },
+    // { to: '/buy', label: 'Buy', icon: <FiHeart /> }, // Hidden but route still exists
     { to: '/owner', label: 'Owner', icon: <FiBriefcase /> },
   ];
 

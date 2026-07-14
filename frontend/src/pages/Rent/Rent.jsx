@@ -7,14 +7,16 @@ import { properties } from '../../data/properties';
 import './Rent.css';
 
 const TYPES = ['All Types', 'Vila', 'Cottage', 'Bungalow', 'Houseboat', 'Treehouse', 'Camp', 'Heritage'];
+const BEDROOMS = ['All BHK', '2 BHK', '3 BHK', '4 BHK', '5 BHK'];
 const SORTS = ['Recommended', 'Price: Low to High', 'Price: High to Low', 'Top Rated', 'Most Reviews'];
 
 export default function Rent() {
   const [searchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get('q') || '');
   const [typeFilter, setTypeFilter] = useState('All Types');
+  const [bedroomFilter, setBedroomFilter] = useState('All BHK');
   const [sort, setSort] = useState('Recommended');
-  const [maxPrice, setMaxPrice] = useState(15000);
+  const [maxPrice, setMaxPrice] = useState(30000);
   const [minRating, setMinRating] = useState(0);
   const [showFilters, setShowFilters] = useState(false);
 
@@ -25,9 +27,10 @@ export default function Rent() {
       const q = query.toLowerCase();
       const matchSearch = !q || p.title.toLowerCase().includes(q) || p.location.toLowerCase().includes(q) || p.category.toLowerCase().includes(q);
       const matchType = typeFilter === 'All Types' || p.category.toLowerCase() === typeFilter.toLowerCase();
+      const matchBedroom = bedroomFilter === 'All BHK' || p.bedrooms === parseInt(bedroomFilter);
       const matchPrice = p.price <= maxPrice;
       const matchRating = p.rating >= minRating;
-      return matchSearch && matchType && matchPrice && matchRating;
+      return matchSearch && matchType && matchBedroom && matchPrice && matchRating;
     })
     .sort((a, b) => {
       if (sort === 'Price: Low to High') return a.price - b.price;
@@ -93,17 +96,36 @@ export default function Rent() {
               </div>
             </div>
 
+            {/* Bedrooms */}
+            <div className="rent__filter-group">
+              <label className="rent__filter-label">
+                <MdOutlineBed style={{ verticalAlign: 'middle', marginRight: '4px' }} />
+                Bedrooms
+              </label>
+              <div className="rent__filter-chips">
+                {BEDROOMS.map((b) => (
+                  <button
+                    key={b}
+                    className={`rent__chip ${bedroomFilter === b ? 'rent__chip--active' : ''}`}
+                    onClick={() => setBedroomFilter(b)}
+                  >
+                    {b}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Price */}
             <div className="rent__filter-group">
               <label className="rent__filter-label">Max Price: ₹{maxPrice.toLocaleString()}/night</label>
               <input
                 type="range"
-                min={1000} max={15000} step={500}
+                min={1000} max={30000} step={500}
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
                 className="rent__slider"
               />
-              <div className="rent__slider-labels"><span>₹1,000</span><span>₹15,000</span></div>
+              <div className="rent__slider-labels"><span>₹1,000</span><span>₹30,000</span></div>
             </div>
 
             {/* Rating */}
@@ -157,7 +179,7 @@ export default function Rent() {
             <span className="rent__empty-icon">🔍</span>
             <h3>No stays found</h3>
             <p>Try adjusting your search or filters</p>
-            <button className="btn-primary" onClick={() => { setQuery(''); setTypeFilter('All Types'); setMinRating(0); setMaxPrice(15000); }}>
+            <button className="btn-primary" onClick={() => { setQuery(''); setTypeFilter('All Types'); setBedroomFilter('All BHK'); setMinRating(0); setMaxPrice(30000); }}>
               Clear Filters
             </button>
           </div>

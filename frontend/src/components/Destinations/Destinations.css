@@ -1,191 +1,288 @@
 /* ============================
-   Destinations — Oval Card Style
-   (Matching Oasis Warm Theme)
+   Destinations — Clean & Minimalist
    ============================ */
 .destinations {
   position: relative;
   z-index: 1;
   background: linear-gradient(180deg, var(--earth-cream) 0%, var(--earth-linen) 100%);
   overflow: hidden;
+  padding: 80px 0 100px;
 }
 
-/* ── Filter Pills ── */
-.destinations__filters {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
-  justify-content: center;
+.destinations .section-header {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 64px;
 }
 
-.destinations__filter {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 20px;
-  background: white;
-  border: 1.5px solid rgba(150, 110, 70, 0.18);
-  border-radius: 50px;
-  font-size: 0.84rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(100,60,20,0.06);
-}
-
-.destinations__filter:hover {
-  border-color: rgba(212,160,23,0.45);
-  color: var(--primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(212,160,23,0.18);
-}
-
-.destinations__filter--active {
-  background: linear-gradient(135deg, #D4A017, #A87A0A);
-  border-color: transparent;
-  color: white;
-  box-shadow: 0 6px 18px rgba(212,160,23,0.45);
-  transform: translateY(-2px);
-}
-
-/* ── Oval Cards Grid ── */
-.destinations__grid {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 18px;
-  justify-items: center;
-}
-
-/* ── Single Card ── */
-.dest-card {
+/* ── Detailed Cards Container ── */
+.destinations__cards {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.dest-card:hover {
-  transform: translateY(-8px);
-}
-
-/* ── Oval image container ── */
-.dest-card__oval {
+  gap: 48px;
   position: relative;
-  width: 130px;
-  height: 170px;
-  border-radius: 100px;     /* large pill — oval shape */
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Single Detailed Card ── */
+.dest-detail-card {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: none;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: none;
+  transition: var(--transition-spring);
+  align-items: center;
+}
+
+.dest-detail-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+/* ── Left Image ── */
+.dest-detail-card__image-wrap {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow:
-    0 8px 28px rgba(80,40,10,0.18),
-    0 2px 8px rgba(80,40,10,0.1);
-  transition: box-shadow 0.3s ease;
-  flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  background: transparent;
 }
 
-.dest-card:hover .dest-card__oval {
-  box-shadow:
-    0 18px 48px rgba(80,40,10,0.28),
-    0 4px 12px rgba(80,40,10,0.14);
-}
-
-/* Image fills oval */
-.dest-card__img {
+.dest-detail-card__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s ease;
   display: block;
-  transition: transform 0.5s ease;
 }
 
-.dest-card:hover .dest-card__img {
-  transform: scale(1.1);
+.dest-detail-card:hover .dest-detail-card__image {
+  transform: scale(1.05);
 }
 
-/* Subtle vignette overlay */
-.dest-card__overlay {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at center bottom,
-    rgba(20, 8, 0, 0.45) 0%,
-    rgba(20, 8, 0, 0.05) 70%
-  );
-  border-radius: inherit;
-}
-
-/* Gold-blue border ring on hover */
-.dest-card:hover .dest-card__oval::after {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: 104px;
-  background: linear-gradient(135deg, #D4A017, #1A3A6B, #F5C518);
-  z-index: -1;
-}
-
-/* ── Info below oval ── */
-.dest-card__info {
-  text-align: center;
+/* ── Right Content ── */
+.dest-detail-card__content {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 20px;
+  padding: 20px 0;
 }
 
-.dest-card__name {
-  font-family: var(--font-heading);
-  font-size: 0.95rem;
+.dest-detail-card__location {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
   font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary-dark);
+  background: rgba(212,160,23,0.08);
+  border: 1px solid rgba(212,160,23,0.20);
+  padding: 6px 12px;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.dest-detail-card__location svg {
+  font-size: 0.85rem;
+  stroke-width: 2.5;
+}
+
+.dest-detail-card__title {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 600;
   color: var(--text-primary);
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-  transition: color 0.2s ease;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-top: -4px;
 }
 
-.dest-card:hover .dest-card__name {
-  color: var(--secondary);
+.dest-detail-card__desc {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 4px;
 }
 
-.dest-card__state {
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  font-weight: 500;
-  letter-spacing: 0.02em;
+/* ── Features Grid ── */
+.dest-detail-card__features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+  margin-bottom: 8px;
 }
 
-/* ── CTA ── */
-.destinations__cta {
+.dest-detail-card__feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 12px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 12px;
   text-align: center;
-  margin-top: 48px;
+  transition: var(--transition);
+  box-shadow: none;
+}
+
+.dest-detail-card__feature:hover {
+  background: rgba(255, 255, 255, 0.50);
+}
+
+.dest-detail-card__feature-icon {
+  font-size: 1.8rem;
+  color: var(--primary);
+  stroke-width: 1.5;
+}
+
+.dest-detail-card__feature-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* ── CTA Button ── */
+.dest-detail-card__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 32px;
+  background: var(--grad-primary);
+  color: white;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border-radius: 50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-spring);
+  letter-spacing: 0.02em;
+  box-shadow: 0 6px 20px rgba(212,160,23,0.30);
+  margin-top: 12px;
+}
+
+.dest-detail-card__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(212,160,23,0.40);
 }
 
 /* ── Responsive ── */
-@media (max-width: 1200px) {
-  .destinations__grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+@media (max-width: 1024px) {
+  .destinations {
+    padding: 70px 0 80px;
   }
-  .dest-card__oval { width: 140px; height: 185px; }
+
+  .destinations__cards {
+    max-width: 100%;
+  }
+
+  .dest-detail-card {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 36px;
+  }
+
+  .dest-detail-card__image-wrap {
+    height: 360px;
+  }
+
+  .dest-detail-card__title {
+    font-size: 2.6rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .destinations__grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+  .destinations {
+    padding: 60px 0 70px;
   }
-  .dest-card__oval { width: 110px; height: 145px; }
-  .dest-card__name { font-size: 0.85rem; }
+
+  .destinations .section-header {
+    margin-bottom: 48px;
+  }
+
+  .destinations__cards {
+    gap: 36px;
+  }
+
+  .dest-detail-card {
+    padding: 28px;
+    gap: 28px;
+  }
+
+  .dest-detail-card__image-wrap {
+    height: 300px;
+  }
+
+  .dest-detail-card__title {
+    font-size: 2.2rem;
+  }
+
+  .dest-detail-card__desc {
+    font-size: 0.95rem;
+  }
+
+  .dest-detail-card__features {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .dest-detail-card__feature {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .dest-detail-card__feature-icon {
+    font-size: 1.6rem;
+  }
+
+  .dest-detail-card__content {
+    padding: 0;
+  }
 }
 
 @media (max-width: 480px) {
-  .destinations__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+  .destinations {
+    padding: 50px 0 60px;
   }
-  .dest-card__oval { width: 130px; height: 170px; border-radius: 80px; }
-  .destinations__filters { gap: 7px; }
-  .destinations__filter { padding: 7px 14px; font-size: 0.78rem; }
+
+  .dest-detail-card {
+    padding: 24px;
+  }
+
+  .dest-detail-card__image-wrap {
+    height: 260px;
+  }
+
+  .dest-detail-card__title {
+    font-size: 2rem;
+  }
+
+  .dest-detail-card__desc {
+    font-size: 0.9rem;
+  }
+
+  .dest-detail-card__btn {
+    width: 100%;
+    padding: 13px 28px;
+    font-size: 0.875rem;
+  }
 }

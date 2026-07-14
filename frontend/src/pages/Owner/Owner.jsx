@@ -32,7 +32,7 @@ export default function Owner() {
             <span className="gradient-text">Steady Income</span>
           </h1>
           <p className="owner__hero-sub">
-            Join 8,000+ hosts earning ₹50,000–₹3,00,000/month with LyfeStays. List for free, earn more.
+            Join 10+ hosts earning ₹1,00,000–₹5,00,000/month with LyfeStays. List for free, earn more.
           </p>
           <div className="owner__hero-ctas">
             <button className="btn-primary" onClick={() => document.getElementById('list-form').scrollIntoView({ behavior: 'smooth' })}>
@@ -41,12 +41,7 @@ export default function Owner() {
             <button className="btn-secondary">Book an Expert Call</button>
           </div>
           <div className="owner__hero-social-proof">
-            <div className="owner__avatars">
-              {['women/44', 'men/32', 'women/22', 'men/55', 'women/33'].map((a, i) => (
-                <img key={i} src={`https://randomuser.me/api/portraits/${a}.jpg`} alt="" className="owner__avatar" />
-              ))}
-            </div>
-            <p className="owner__social-text">Join <strong>8,000+</strong> hosts already earning</p>
+            <p className="owner__social-text">Join <strong>10+</strong> hosts already earning</p>
           </div>
         </div>
       </div>
@@ -191,15 +186,15 @@ export default function Owner() {
           </h2>
           <div className="owner__host-cards">
             {[
-              { name: 'Simran Bhatia', loc: 'Shimla Host', earn: '₹96,000/month', text: 'My property was sitting empty for 6 months. Within 2 weeks on LyfeStays it had its first booking. I now earn more from it than my salary!', img: 'women/55' },
-              { name: 'Rajesh Malhotra', loc: 'Manali Host', earn: '₹2.1L/month', text: 'The host dashboard is incredible — I can see bookings, payments and reviews all in one place. Support team is always just a WhatsApp away.', img: 'men/72' },
-              { name: 'Kavitha Rao', loc: 'Coorg Host', earn: '₹1.4L/month', text: 'The LyfeStays professional photography team came to my estate and made it look stunning. Bookings tripled in the first month after the listing went live.', img: 'women/33' },
+              { name: 'Priya Sharma', loc: 'Kasauli Host', earn: '₹2.5L/month', text: 'My villa was sitting empty for 8 months. Within 3 weeks on LyfeStays it had its first booking. I now earn consistently every month!', initials: 'PS' },
+              { name: 'Arjun Mehta', loc: 'Kasauli Host', earn: '₹4.2L/month', text: 'The host dashboard is incredible — I can see bookings, payments and reviews all in one place. Support team is always just a call away.', initials: 'AM' },
+              { name: 'Sneha Gupta', loc: 'Kasauli Host', earn: '₹3.8L/month', text: 'The LyfeStays professional photography team came to my property and made it look stunning. Bookings doubled in the first month after going live.', initials: 'SG' },
             ].map((h) => (
               <div key={h.name} className="owner__host-card">
                 <div className="owner__host-earn">{h.earn}</div>
                 <p className="owner__host-text">"{h.text}"</p>
                 <div className="owner__host-author">
-                  <img src={`https://randomuser.me/api/portraits/${h.img}.jpg`} alt={h.name} />
+                  <div className="owner__host-avatar">{h.initials}</div>
                   <div>
                     <p className="owner__host-name">{h.name}</p>
                     <p className="owner__host-loc">{h.loc}</p>

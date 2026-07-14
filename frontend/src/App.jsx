@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import FloatingSearch from './components/FloatingSearch/FloatingSearch';
@@ -11,11 +11,13 @@ import Owner from './pages/Owner/Owner';
 import PropertyDetail from './pages/PropertyDetail/PropertyDetail';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import VillaSelection from './pages/VillaSelection/VillaSelection';
 import { clearSession, getStoredSession, storeSession } from './utils/auth';
 import './App.css';
 
 function App() {
   const [session, setSession] = useState(() => getStoredSession());
+  const location = useLocation();
 
   const handleAuthSuccess = (nextSession) => {
     setSession(nextSession);
@@ -27,13 +29,17 @@ function App() {
     setSession(null);
   };
 
+  // Only show FloatingSearch on home page
+  const showFloatingSearch = location.pathname === '/';
+
   return (
     <div className="app">
       <ScrollToTop />
       <Navbar session={session} onLogout={handleLogout} />
-      <FloatingSearch />
+      {showFloatingSearch && <FloatingSearch />}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/villa-selection" element={<VillaSelection />} />
         <Route path="/rent" element={<Rent />} />
         <Route path="/buy" element={<Buy />} />
         <Route path="/owner" element={<Owner />} />

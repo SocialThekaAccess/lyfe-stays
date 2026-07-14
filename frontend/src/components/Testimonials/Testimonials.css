@@ -62,11 +62,19 @@
   gap: 16px;
 }
 .testi__avatar {
-  width: 56px; height: 56px;
+  width: 56px; 
+  height: 56px;
   border-radius: 50%;
-  object-fit: cover;
   border: 3px solid var(--secondary);
   box-shadow: 0 0 0 4px rgba(26,58,107,0.12);
+  background: linear-gradient(135deg, #D4A017, #A87A0A);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 .testi__name { font-weight: 700; color: var(--text-primary); font-size: 1rem; }
 .testi__location { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
@@ -148,11 +156,20 @@
   overflow: hidden;
 }
 .testi__card-author { display: flex; align-items: center; gap: 10px; }
-.testi__card-author img {
-  width: 32px; height: 32px;
+.testi__card-avatar {
+  width: 32px; 
+  height: 32px;
   border-radius: 50%;
-  object-fit: cover;
   border: 1.5px solid var(--earth-sand);
+  background: linear-gradient(135deg, #D4A017, #A87A0A);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
 }
 .testi__card-name { font-size: 0.82rem; font-weight: 700; color: var(--text-primary); }
 .testi__card-loc { font-size: 0.72rem; color: var(--text-muted); }

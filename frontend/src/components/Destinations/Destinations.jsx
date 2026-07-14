@@ -1,51 +1,12 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiArrowRight } from 'react-icons/fi';
+import { FiArrowRight, FiMapPin } from 'react-icons/fi';
+import { HiOutlineLocationMarker } from 'react-icons/hi';
+import { BsTree } from 'react-icons/bs';
+import { MdOutlineVilla } from 'react-icons/md';
 import { destinations } from '../../data/properties';
 import './Destinations.css';
 
-const FILTERS = [
-  { key: 'all', label: 'All', icon: '✨' },
-  { key: 'mountain', label: 'Mountain', icon: '🏔️' },
-  { key: 'beach', label: 'Beach', icon: '🏖️' },
-  { key: 'spiritual', label: 'Spiritual', icon: '🛕' },
-  { key: 'royal', label: 'Royal', icon: '👑' },
-  { key: 'adventure', label: 'Adventure', icon: '🧗' },
-  { key: 'nature', label: 'Nature', icon: '🌿' },
-  { key: 'heritage', label: 'Heritage', icon: '🏛️' },
-];
-
-// Map destinations to filter categories
-const DEST_CATEGORIES = {
-  'Goa': 'beach',
-  'Manali': 'mountain',
-  'Rishikesh': 'spiritual',
-  'Udaipur': 'royal',
-  'Darjeeling': 'nature',
-  'Ladakh': 'adventure',
-  'Kerala': 'nature',
-  'Jaipur': 'heritage',
-};
-
-// Subtitle/state info
-const DEST_STATE = {
-  'Goa': 'Goa',
-  'Manali': 'Himachal Pradesh',
-  'Rishikesh': 'Uttarakhand',
-  'Udaipur': 'Rajasthan',
-  'Darjeeling': 'West Bengal',
-  'Ladakh': 'Jammu & Kashmir',
-  'Kerala': 'Kerala',
-  'Jaipur': 'Rajasthan',
-};
-
 export default function Destinations() {
-  const [activeFilter, setActiveFilter] = useState('all');
-
-  const filtered = destinations.filter((d) =>
-    activeFilter === 'all' || DEST_CATEGORIES[d.name] === activeFilter
-  );
-
   return (
     <section className="destinations section">
       <div className="container">
@@ -59,40 +20,52 @@ export default function Destinations() {
           </p>
         </div>
 
-        {/* Filter Pills */}
-        <div className="destinations__filters">
-          {FILTERS.map((f) => (
-            <button
-              key={f.key}
-              className={`destinations__filter ${activeFilter === f.key ? 'destinations__filter--active' : ''}`}
-              onClick={() => setActiveFilter(f.key)}
-            >
-              <span>{f.icon}</span>
-              {f.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Oval Cards Grid */}
-        <div className="destinations__grid">
-          {filtered.map((d) => (
-            <Link key={d.id} to={`/rent?q=${d.name}`} className="dest-card">
-              <div className="dest-card__oval">
-                <img src={d.image} alt={d.name} className="dest-card__img" />
-                <div className="dest-card__overlay" />
+        {/* Detailed Cards Grid */}
+        <div className="destinations__cards">
+          {destinations.map((dest) => (
+            <div key={dest.id} className="dest-detail-card">
+              {/* Left - Image */}
+              <div className="dest-detail-card__image-wrap">
+                <img 
+                  src={dest.image} 
+                  alt={dest.name} 
+                  className="dest-detail-card__image" 
+                />
               </div>
-              <div className="dest-card__info">
-                <h3 className="dest-card__name">{d.name}</h3>
-                <span className="dest-card__state">{DEST_STATE[d.name]}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
 
-        <div className="destinations__cta">
-          <Link to="/rent" className="btn-primary">
-            View All Destinations <FiArrowRight />
-          </Link>
+              {/* Right - Content */}
+              <div className="dest-detail-card__content">
+                <span className="dest-detail-card__location">
+                  <FiMapPin /> HIMACHAL PRADESH
+                </span>
+                <h3 className="dest-detail-card__title">Kasauli</h3>
+                <p className="dest-detail-card__desc">
+                  A serene hill station offering colonial charm, pine-covered hills, and breathtaking views.
+                </p>
+
+                {/* Features */}
+                <div className="dest-detail-card__features">
+                  <div className="dest-detail-card__feature">
+                    <HiOutlineLocationMarker className="dest-detail-card__feature-icon" />
+                    <span className="dest-detail-card__feature-text">Scenic Views</span>
+                  </div>
+                  <div className="dest-detail-card__feature">
+                    <BsTree className="dest-detail-card__feature-icon" />
+                    <span className="dest-detail-card__feature-text">Peaceful Environment</span>
+                  </div>
+                  <div className="dest-detail-card__feature">
+                    <MdOutlineVilla className="dest-detail-card__feature-icon" />
+                    <span className="dest-detail-card__feature-text">Colonial Charm</span>
+                  </div>
+                </div>
+
+                {/* Button */}
+                <Link to="/rent" className="dest-detail-card__btn">
+                  Explore Stays in Kasauli <FiArrowRight />
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

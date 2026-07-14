@@ -66,22 +66,7 @@ export default function Newsletter() {
 
           {/* Right Side Visual */}
           <div className="newsletter__visual">
-            <div className="newsletter__stat-cards">
-              {[
-                { emoji: '🏝️', label: 'Andaman Deal', discount: '35% OFF', price: '₹11,000/night' },
-                { emoji: '⛰️', label: 'Manali Special', discount: '20% OFF', price: '₹8,500/night' },
-                { emoji: '🌊', label: 'Goa Weekend', discount: '28% OFF', price: '₹6,200/night' },
-              ].map((c) => (
-                <div key={c.label} className="newsletter__stat-card">
-                  <span className="newsletter__stat-emoji">{c.emoji}</span>
-                  <div>
-                    <p className="newsletter__stat-label">{c.label}</p>
-                    <p className="newsletter__stat-price">{c.price}</p>
-                  </div>
-                  <span className="newsletter__stat-discount">{c.discount}</span>
-                </div>
-              ))}
-            </div>
+            {/* Removed deals section */}
           </div>
         </div>
       </div>

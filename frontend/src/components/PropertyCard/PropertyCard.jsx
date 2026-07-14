@@ -16,20 +16,18 @@ export default function PropertyCard({ property, variant = 'default' }) {
     : `₹${(property.price / 100000).toFixed(1)}L`;
 
   return (
-    <div className={`property-card property-card--${variant}`}>
+    <Link to={`/property/${property.id}`} className={`property-card property-card--${variant}`}>
       {/* Image Wrapper */}
       <div className="property-card__image-wrap">
-        <Link to={`/property/${property.id}`}>
-          {!imgLoaded && <div className="property-card__skeleton" />}
-          <img
-            src={property.image}
-            alt={property.title}
-            className={`property-card__image ${imgLoaded ? 'property-card__image--loaded' : ''}`}
-            onLoad={() => setImgLoaded(true)}
-            loading="lazy"
-          />
-          <div className="property-card__image-overlay" />
-        </Link>
+        {!imgLoaded && <div className="property-card__skeleton" />}
+        <img
+          src={property.image}
+          alt={property.title}
+          className={`property-card__image ${imgLoaded ? 'property-card__image--loaded' : ''}`}
+          onLoad={() => setImgLoaded(true)}
+          loading="lazy"
+        />
+        <div className="property-card__image-overlay" />
 
         {/* Tag */}
         {property.tag && (
@@ -45,7 +43,7 @@ export default function PropertyCard({ property, variant = 'default' }) {
         <button
           type="button"
           className={`property-card__wish ${liked ? 'property-card__wish--active' : ''}`}
-          onClick={(e) => { e.preventDefault(); setLiked(!liked); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setLiked(!liked); }}
           aria-label="Add to wishlist"
         >
           <FiHeart />
@@ -65,9 +63,7 @@ export default function PropertyCard({ property, variant = 'default' }) {
         </div>
 
         {/* Title */}
-        <Link to={`/property/${property.id}`}>
-          <h3 className="property-card__title">{property.title}</h3>
-        </Link>
+        <h3 className="property-card__title">{property.title}</h3>
 
         {/* Location */}
         <div className="property-card__location">
@@ -81,6 +77,12 @@ export default function PropertyCard({ property, variant = 'default' }) {
             <FiUsers size={13} />
             <span>{property.guests} guests</span>
           </div>
+          {property.kids && (
+            <div className="property-card__stat">
+              <FiUsers size={13} style={{ opacity: 0.7 }} />
+              <span>{property.kids} kids</span>
+            </div>
+          )}
           <div className="property-card__stat">
             <MdOutlineBed size={14} />
             <span>{property.bedrooms} beds</span>
@@ -109,14 +111,11 @@ export default function PropertyCard({ property, variant = 'default' }) {
             <span className="property-card__price">{priceLabel}</span>
             {isRental && <span className="property-card__price-label">per night</span>}
           </div>
-          <Link
-            to={`/property/${property.id}`}
-            className="property-card__btn"
-          >
+          <span className="property-card__btn">
             {isRental ? 'Book Now' : 'View Details'}
-          </Link>
+          </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

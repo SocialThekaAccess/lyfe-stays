@@ -15,17 +15,9 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import './Hero.css';
 
-const stats = [
-  { value: '15,000+', label: 'Verified Stays' },
-  { value: '98%', label: 'Happy Travellers' },
-  { value: '250+', label: 'Destinations' },
-  { value: 'Rs 0', label: 'Booking Fees' },
-];
-
 export default function Hero() {
   const navigate = useNavigate();
   const calendarRef = useRef(null);
-  const [activeTab, setActiveTab] = useState('rent');
   const [destination, setDestination] = useState('');
   const [guests, setGuests] = useState(2);
   const [rooms, setRooms] = useState(1);
@@ -65,7 +57,7 @@ export default function Hero() {
     params.set('rooms', String(rooms));
     params.set('children', String(children));
 
-    navigate(`/${activeTab}?${params.toString()}`);
+    navigate(`/rent?${params.toString()}`);
   };
 
   const openCalendar = (step) => {
@@ -130,22 +122,6 @@ export default function Hero() {
         </p>
 
         <div className="hero__search-box" ref={calendarRef}>
-          <div className="hero__tabs">
-            {[
-              { key: 'rent', label: 'Rent a Stay' },
-              { key: 'buy', label: 'Buy Property' },
-            ].map(({ key, label }) => (
-              <button
-                type="button"
-                key={key}
-                className={`hero__tab ${activeTab === key ? 'hero__tab--active' : ''}`}
-                onClick={() => setActiveTab(key)}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-
           <form className="hero__form" onSubmit={handleSearch}>
             <div className="hero__field hero__field--wide">
               <FiMapPin className="hero__field-icon" />
@@ -154,7 +130,7 @@ export default function Hero() {
                 <input
                   type="text"
                   className="hero__input"
-                  placeholder="Manali, Goa, Rishikesh..."
+                  placeholder="Kasauli"
                   value={destination}
                   onChange={(event) => setDestination(event.target.value)}
                 />
@@ -313,29 +289,19 @@ export default function Hero() {
 
           <div className="hero__popular">
             <span className="hero__popular-label">Popular:</span>
-            {['Goa Beaches', 'Manali', 'Rishikesh', 'Ladakh', 'Kerala'].map((item) => (
+            {['Kasauli'].map((item) => (
               <button
                 type="button"
                 key={item}
                 className="hero__popular-tag"
                 onClick={() => {
-                  setDestination(item);
-                  navigate(`/${activeTab}?q=${item}`);
+                  navigate(`/villa-selection`);
                 }}
               >
                 {item}
               </button>
             ))}
           </div>
-        </div>
-
-        <div className="hero__stats">
-          {stats.map((item) => (
-            <div key={item.label} className="hero__stat">
-              <span className="hero__stat-value">{item.value}</span>
-              <span className="hero__stat-label">{item.label}</span>
-            </div>
-          ))}
         </div>
       </div>
 

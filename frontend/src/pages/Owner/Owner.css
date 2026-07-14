@@ -1,7 +1,7 @@
 /* Owner Page — Oasis Bright */
 .owner__hero {
   position: relative;
-  padding: 140px 0 60px; overflow: hidden;
+  padding: 70px 0 40px; overflow: hidden;
   background: linear-gradient(145deg, #FFFBF0 0%, #FDF3D0 50%, #F5E8B8 100%);
 }
 .owner__hero-bg {
@@ -189,7 +189,21 @@
 }
 .owner__host-text { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 20px; font-style: italic; }
 .owner__host-author { display: flex; align-items: center; gap: 12px; }
-.owner__host-author img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--secondary); }
+.owner__host-avatar {
+  width: 44px; 
+  height: 44px; 
+  border-radius: 50%; 
+  border: 2px solid var(--secondary);
+  background: linear-gradient(135deg, #D4A017, #A87A0A);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
 .owner__host-name { font-weight: 700; color: var(--text-primary); font-size: 0.9rem; }
 .owner__host-loc { font-size: 0.76rem; color: var(--text-muted); margin-top: 2px; }
 
@@ -214,4 +228,67 @@
   .owner__stats-strip { grid-template-columns: 1fr; }
   .owner__steps { grid-template-columns: 1fr; }
   .owner__hero-ctas { flex-direction: column; }
+}
+
+
+/* Large Desktop - 1920px+ */
+@media (min-width: 1920px) {
+  .owner__hero {
+    padding: 120px 0 60px;
+  }
+  
+  .owner__hero-title {
+    font-size: 4rem;
+  }
+  
+  .owner__hero-sub {
+    font-size: 1.15rem;
+    max-width: 640px;
+  }
+  
+  .owner__stats-strip {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+  
+  .owner__stat {
+    padding: 32px 24px;
+  }
+  
+  .owner__steps {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  
+  .owner__step {
+    padding: 40px 28px;
+  }
+  
+  .owner__main-grid {
+    gap: 56px;
+  }
+  
+  .owner__calculator,
+  .owner__form-card {
+    padding: 48px;
+  }
+  
+  .owner__host-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  
+  .owner__host-card {
+    padding: 40px;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .owner__hero {
+    padding: 90px 0 50px;
+  }
+  
+  .owner__main-grid {
+    gap: 48px;
+  }
 }
