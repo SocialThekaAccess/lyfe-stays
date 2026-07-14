@@ -40,9 +40,6 @@ export default function Owner() {
             </button>
             <button className="btn-secondary">Book an Expert Call</button>
           </div>
-          <div className="owner__hero-social-proof">
-            <p className="owner__social-text">Join <strong>10+</strong> hosts already earning</p>
-          </div>
         </div>
       </div>
 

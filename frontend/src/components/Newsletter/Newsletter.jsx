@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { FiMail, FiArrowRight, FiGift } from 'react-icons/fi';
+import { FiMail, FiArrowRight, FiGift, FiMapPin } from 'react-icons/fi';
+import { HiOutlineLocationMarker } from 'react-icons/hi';
 import './Newsletter.css';
 
 export default function Newsletter() {
@@ -14,6 +15,10 @@ export default function Newsletter() {
     }
   };
 
+  const deals = [
+    { icon: HiOutlineLocationMarker, name: 'Kasauli Special', price: '₹8,500/night', discount: '25% OFF' },
+  ];
+
   return (
     <section className="newsletter section">
       <div className="container">
@@ -27,7 +32,7 @@ export default function Newsletter() {
             </div>
             <span className="section-tag">🎁 Exclusive Deals</span>
             <h2 className="newsletter__title">
-              Get <span className="gradient-text">₹2,000 Off</span> Your First Stay
+              Subscribe for <span className="gradient-text">Exclusive Offers</span>
             </h2>
             <p className="newsletter__desc">
               Join 50,000+ savvy travellers who get early access to deals, insider destination guides, and exclusive LyfeStays member benefits — straight to their inbox.
@@ -47,14 +52,14 @@ export default function Newsletter() {
                   />
                 </div>
                 <button type="submit" className="btn-primary newsletter__btn">
-                  Get ₹2,000 Coupon <FiArrowRight />
+                  Subscribe Now <FiArrowRight />
                 </button>
               </form>
             ) : (
               <div className="newsletter__success">
                 <span>🎉</span>
                 <p>
-                  <strong>Welcome aboard!</strong> Your ₹2,000 coupon has been sent to your inbox.
+                  <strong>Welcome aboard!</strong> You're now subscribed to exclusive deals.
                 </p>
               </div>
             )}
@@ -64,9 +69,23 @@ export default function Newsletter() {
             </p>
           </div>
 
-          {/* Right Side Visual */}
+          {/* Right Side Deals Visual */}
           <div className="newsletter__visual">
-            {/* Removed deals section */}
+            {deals.map((deal, idx) => {
+              const IconComponent = deal.icon;
+              return (
+                <div key={idx} className="newsletter__deal-card">
+                  <div className="newsletter__deal-icon-svg">
+                    <IconComponent />
+                  </div>
+                  <div className="newsletter__deal-info">
+                    <h4 className="newsletter__deal-name">{deal.name}</h4>
+                    <p className="newsletter__deal-price">{deal.price}</p>
+                  </div>
+                  <span className="newsletter__deal-badge">{deal.discount}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

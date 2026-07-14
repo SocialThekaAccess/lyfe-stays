@@ -1,288 +1,156 @@
 /* ============================
-   Destinations — Clean & Minimalist
+   Destinations — Clean & Simple
    ============================ */
 .destinations {
   position: relative;
   z-index: 1;
   background: linear-gradient(180deg, var(--earth-cream) 0%, var(--earth-linen) 100%);
   overflow: hidden;
-  padding: 80px 0 100px;
+  padding: 60px 0;
 }
 
 .destinations .section-header {
   position: relative;
   z-index: 2;
-  margin-bottom: 64px;
+  margin-bottom: 50px;
 }
 
-/* ── Detailed Cards Container ── */
-.destinations__cards {
+/* ── Oval Cards Grid ── */
+.destinations__grid {
   display: flex;
-  flex-direction: column;
-  gap: 48px;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
   position: relative;
   z-index: 2;
-  max-width: 1100px;
-  margin: 0 auto;
 }
 
-/* ── Single Detailed Card ── */
-.dest-detail-card {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 56px;
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: none;
-  border-radius: 24px;
-  padding: 40px;
-  box-shadow: none;
-  transition: var(--transition-spring);
+/* ── Single Card ── */
+.dest-card {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-}
-
-.dest-detail-card:hover {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.55);
-}
-
-/* ── Left Image ── */
-.dest-detail-card__image-wrap {
-  position: relative;
-  width: 100%;
-  height: 420px;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  gap: 0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 0;
+  border-radius: 20px;
   background: transparent;
+  border: none;
+  box-shadow: none;
+  position: relative;
 }
 
-.dest-detail-card__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-  display: block;
+.dest-card:hover {
+  transform: translateY(-8px);
 }
 
-.dest-detail-card:hover .dest-detail-card__image {
+/* ── Oval image container ── */
+.dest-card__oval {
+  position: relative;
+  width: 200px;
+  height: 250px;
+  border-radius: 125px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.dest-card:hover .dest-card__oval {
+  box-shadow: 0 12px 28px rgba(212,160,23,0.3);
   transform: scale(1.05);
 }
 
-/* ── Right Content ── */
-.dest-detail-card__content {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px 0;
+/* Image fills oval */
+.dest-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
 }
 
-.dest-detail-card__location {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--primary-dark);
-  background: rgba(212,160,23,0.08);
-  border: 1px solid rgba(212,160,23,0.20);
-  padding: 6px 12px;
-  border-radius: 20px;
-  width: fit-content;
+.dest-card:hover .dest-card__img {
+  transform: scale(1.1);
 }
 
-.dest-detail-card__location svg {
-  font-size: 0.85rem;
-  stroke-width: 2.5;
+/* Gradient overlay for text readability */
+.dest-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 40%,
+    rgba(0, 0, 0, 0.4) 70%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  border-radius: inherit;
+  z-index: 1;
 }
 
-.dest-detail-card__title {
-  font-family: var(--font-heading);
-  font-size: 3rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  margin-top: -4px;
-}
-
-.dest-detail-card__desc {
-  font-size: 1.05rem;
-  color: var(--text-secondary);
-  line-height: 1.8;
-  margin-bottom: 4px;
-}
-
-/* ── Features Grid ── */
-.dest-detail-card__features {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 12px;
-  margin-bottom: 8px;
-}
-
-.dest-detail-card__feature {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 20px 12px;
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: none;
-  border-radius: 12px;
+/* ── Info overlay on image ── */
+.dest-card__info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   text-align: center;
-  transition: var(--transition);
-  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px 16px;
+  z-index: 2;
 }
 
-.dest-detail-card__feature:hover {
-  background: rgba(255, 255, 255, 0.50);
-}
-
-.dest-detail-card__feature-icon {
-  font-size: 1.8rem;
-  color: var(--primary);
-  stroke-width: 1.5;
-}
-
-.dest-detail-card__feature-text {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  line-height: 1.4;
-}
-
-/* ── CTA Button ── */
-.dest-detail-card__btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 15px 32px;
-  background: var(--grad-primary);
-  color: white;
+.dest-card__name {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
   font-weight: 700;
-  font-size: 0.92rem;
-  border-radius: 50px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: var(--transition-spring);
-  letter-spacing: 0.02em;
-  box-shadow: 0 6px 20px rgba(212,160,23,0.30);
-  margin-top: 12px;
+  color: white;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  transition: all 0.3s ease;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-.dest-detail-card__btn:hover {
+.dest-card:hover .dest-card__name {
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(212,160,23,0.40);
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.dest-card__state {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* ── Responsive ── */
-@media (max-width: 1024px) {
-  .destinations {
-    padding: 70px 0 80px;
+@media (max-width: 1200px) {
+  .destinations__grid {
+    gap: 24px;
   }
-
-  .destinations__cards {
-    max-width: 100%;
-  }
-
-  .dest-detail-card {
-    grid-template-columns: 1fr;
-    gap: 36px;
-    padding: 36px;
-  }
-
-  .dest-detail-card__image-wrap {
-    height: 360px;
-  }
-
-  .dest-detail-card__title {
-    font-size: 2.6rem;
-  }
+  .dest-card__oval { width: 180px; height: 225px; border-radius: 112px; }
 }
 
 @media (max-width: 768px) {
-  .destinations {
-    padding: 60px 0 70px;
+  .destinations__grid {
+    gap: 20px;
   }
-
-  .destinations .section-header {
-    margin-bottom: 48px;
-  }
-
-  .destinations__cards {
-    gap: 36px;
-  }
-
-  .dest-detail-card {
-    padding: 28px;
-    gap: 28px;
-  }
-
-  .dest-detail-card__image-wrap {
-    height: 300px;
-  }
-
-  .dest-detail-card__title {
-    font-size: 2.2rem;
-  }
-
-  .dest-detail-card__desc {
-    font-size: 0.95rem;
-  }
-
-  .dest-detail-card__features {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .dest-detail-card__feature {
-    flex-direction: row;
-    justify-content: flex-start;
-    padding: 14px 16px;
-    gap: 12px;
-  }
-
-  .dest-detail-card__feature-icon {
-    font-size: 1.6rem;
-  }
-
-  .dest-detail-card__content {
-    padding: 0;
-  }
+  .dest-card { padding: 0; }
+  .dest-card__oval { width: 160px; height: 200px; border-radius: 100px; }
+  .dest-card__name { font-size: 1.3rem; }
 }
 
 @media (max-width: 480px) {
-  .destinations {
-    padding: 50px 0 60px;
+  .destinations__grid {
+    gap: 16px;
   }
-
-  .dest-detail-card {
-    padding: 24px;
-  }
-
-  .dest-detail-card__image-wrap {
-    height: 260px;
-  }
-
-  .dest-detail-card__title {
-    font-size: 2rem;
-  }
-
-  .dest-detail-card__desc {
-    font-size: 0.9rem;
-  }
-
-  .dest-detail-card__btn {
-    width: 100%;
-    padding: 13px 28px;
-    font-size: 0.875rem;
-  }
+  .dest-card { padding: 0; border-radius: 16px; }
+  .dest-card__oval { width: 140px; height: 175px; border-radius: 87px; }
 }
