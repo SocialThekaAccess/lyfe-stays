@@ -532,7 +532,7 @@
   }
 
   .hero__search-box {
-    display: none; /* Hide search box on mobile */
+    display: none; /* Hide search box on mobile and tablet */
   }
 
   .hero__form {
@@ -573,6 +573,12 @@
   .hero__calendar-popup .rdrMonth {
     max-width: none;
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__search-box {
+    display: none; /* Ensure hidden on small mobile too */
   }
 }
 
